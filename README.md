@@ -32,7 +32,7 @@ For the backend, create two API endpoints. One that returns a single risk type a
 
 Deliverables will be...
 
-1. A well-tested REST API written in Python.
+1. A well-tested REST API written in Python. **Bonus points** if you use Django.
 
 ### Frontend
 
@@ -54,3 +54,18 @@ When you're done with the above project, please submit your GitHub repo to phil@
 
 1. **Bonus points** if you also orchestrate the launch environment in AWS using CloudFormation.
 2. **Mega bonus points** if you host the app in [AWS Lambda](https://aws.amazon.com/lambda/) using [Zappa](https://github.com/Miserlou/Zappa) or [AWS ECS](https://aws.amazon.com/ecs/) using [AWS Fargate](https://aws.amazon.com/fargate/).
+
+
+## Evaluation
+
+If you'd like to do verty well on this project, we'll hand you the categories we utilize to score candidates! They are: 
+
+1. Business requirements are met or exceeded
+2. Documentation is clearly written
+3. Django is PEP8 copmliant and avoids antipatterns
+4. VUE.js utilizes appropriate Viewmodel and DOM interactions
+5. CSS Framework is utilized appropriately
+6. Test coverage is complete and meaningful
+7. Deployment is fully scripted
+8. Communication is positive and respectful
+
