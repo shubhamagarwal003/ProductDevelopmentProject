@@ -62,9 +62,9 @@ If you'd like to do verty well on this project, we'll hand you the categories we
 
 1. Business requirements are met or exceeded
 2. Documentation is clearly written
-3. Django is PEP8 copmliant and avoids antipatterns
-4. VUE.js utilizes appropriate Viewmodel and DOM interactions
-5. CSS Framework is utilized appropriately
+3. Django is PEP8 compliant and avoids antipatterns
+4. VUE.js contains appropriate ViewModels and DOM interactions
+5. CSS Framework is utilized correctly
 6. Test coverage is complete and meaningful
 7. Deployment is fully scripted
 8. Communication is positive and respectful
