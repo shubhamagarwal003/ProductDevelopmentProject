@@ -58,14 +58,13 @@ When you're done with the above project, please submit your GitHub repo to phil@
 
 ## Evaluation
 
-If you'd like to do verty well on this project, we'll hand you the categories we utilize to score candidates! They are: 
+If you'd like to do very well on this project, we'll hand you the categories we utilize to score candidates! They are: 
 
 1. Business requirements are met or exceeded
 2. Documentation is clearly written
 3. Django is PEP8 compliant and avoids antipatterns
-4. VUE.js contains appropriate ViewModels and DOM interactions
+4. Vue.js contains appropriate ViewModels and DOM interactions
 5. CSS Framework is utilized correctly
 6. Test coverage is complete and meaningful
 7. Deployment is fully scripted
 8. Communication is positive and respectful
-
