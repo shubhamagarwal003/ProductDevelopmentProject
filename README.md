@@ -46,19 +46,18 @@ Deliverables will be...
 
 ## Questions
 
-For questions, please contact phil@britecore.com.
+For questions, please contact daniel.greenfeld@britecore.com.
 
 ## Finished?
 
-When you're done with the above project, please submit your GitHub repo to phil@britecore.com along with a link to a live hosted instance.
+When you're done with the above project, please submit your GitHub repo to daniel.greenfeld@britecore.com along with a link to a live hosted instance. If you haven't already supplied a resume during this process, attach it to your email.
 
 1. **Bonus points** if you also orchestrate the launch environment in AWS using CloudFormation.
 2. **Mega bonus points** if you host the app in [AWS Lambda](https://aws.amazon.com/lambda/) using [Zappa](https://github.com/Miserlou/Zappa) or [AWS ECS](https://aws.amazon.com/ecs/) using [AWS Fargate](https://aws.amazon.com/fargate/).
 
-
 ## Evaluation
 
-If you'd like to do verty well on this project, we'll hand you the categories we utilize to score candidates! They are: 
+If you'd like to do very well on this project, we'll hand you the categories we utilize to score candidates! They are:
 
 1. Business requirements are met or exceeded
 2. Documentation is clearly written
@@ -68,4 +67,3 @@ If you'd like to do verty well on this project, we'll hand you the categories we
 6. Test coverage is complete and meaningful
 7. Deployment is fully scripted
 8. Communication is positive and respectful
-
