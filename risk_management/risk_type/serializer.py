@@ -4,14 +4,18 @@ from rest_framework import serializers
 
 
 class RiskFieldEnumOptionSerializer(serializers.ModelSerializer):
-
+    """
+    Serializer for Risk Enum Field Options
+    """
     class Meta:
         model = RiskFieldEnumOption
         fields = ['option']
 
 
 class RiskFieldSerializer(serializers.ModelSerializer):
-    # options = serializers.SerializerMethodField()
+    """
+    Serializer fro Risk Field
+    """
     options = RiskFieldEnumOptionSerializer(many=True, read_only=True)
     dtype = serializers.SerializerMethodField()
 
@@ -24,6 +28,9 @@ class RiskFieldSerializer(serializers.ModelSerializer):
 
 
 class RiskSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Risk
+    """
     fields = RiskFieldSerializer(many=True, read_only=True)
 
     class Meta:
