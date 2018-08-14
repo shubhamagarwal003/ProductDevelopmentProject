@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Britecore Insurance</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <h1>Britecore Insurance</h1>
+    </div>
+    <div id="risk">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+           <h2>[[ name ]]</h2>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form>
+                <div v-for="(textF, index) in fields.text">
+                    <div class="form-group">
+                        <label>[[textF.name]]</label>
+                        <input v-model="textF.value" class="form-control" type="text">
+                    </div>    
+                </div>
+                <div v-for="(numF, index) in fields.number">
+                    <div class="form-group">
+                        <label>[[numF.name]]</label>
+                        <input v-model="numF.value" class="form-control" type="number">
+                    </div>    
+                </div>
+                <div v-for="(dateF, index) in fields.date">
+                    <div class="form-group">
+                        <label>[[dateF.name]]</label>
+                        <input v-model="dateF.value" class="form-control" type="date">
+                    </div>
+                </div>
+                <div v-for="(enumF, index) in fields.enum">
+                    <div class="form-group">
+                        <label>[[enumF.name]]</label>
+                        <select v-model="enumF.value" class="form-control">
+                            <option v-for="(option, index) in enumF.options">[[option]]</option>
+                        </select>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

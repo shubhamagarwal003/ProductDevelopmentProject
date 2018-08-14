@@ -32,7 +32,7 @@ class RiskField(models.Model):
     # Any other metadata for field can be added here
     name = models.CharField(max_length=50, default="")
     dtype = models.CharField(max_length=5, choices=[(tag, tag.value) for tag in DataTypes])
-    risk = models.ForeignKey(Risk, on_delete=models.CASCADE)
+    risk = models.ForeignKey(Risk, on_delete=models.CASCADE, related_name='fields')
     description = models.TextField(default="")
 
     def save(self, **kwargs):
@@ -76,7 +76,7 @@ class RiskFieldDate(RiskFieldSuCl):
 
 
 class RiskFieldNumber(RiskFieldSuCl):
-    """ORM class for storing Date Field Data"""
+    """ORM class for storing Number Field Data"""
     value = models.FloatField()
 
     def clean(self):
@@ -86,7 +86,7 @@ class RiskFieldNumber(RiskFieldSuCl):
 
 
 class RiskFieldEnum(RiskFieldSuCl):
-    """ORM class for storing Date Field Data"""
+    """ORM class for storing Enum Field Data"""
     value = models.CharField(max_length=10)
 
     def clean(self):
@@ -95,7 +95,22 @@ class RiskFieldEnum(RiskFieldSuCl):
             raise ValidationError("Risk Field Type is not Enum")
 
 
+class RiskFieldEnumOption(models.Model):
+    """ORM class for storing Enum Field Choice"""
+    option = models.CharField(max_length=10)
+    risk_field = models.ForeignKey(RiskField, on_delete=models.CASCADE, related_name='options')
+
+    def clean(self):
+        super(RiskFieldEnumOption, self).clean()
+        if not validate_dtype(self.risk_field, DataTypes.EN):
+            raise ValidationError("Risk Field Type is not Enum")
+
+    def save(self, **kwargs):
+        self.clean()
+        return super(RiskFieldEnumOption, self).save(**kwargs)
+
+
 def validate_dtype(field, dtype):
-    if (field.dtype != dtype):
+    if (eval(field.dtype) != dtype):
         return False
     return True

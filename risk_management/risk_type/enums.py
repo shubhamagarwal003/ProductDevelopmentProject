@@ -10,7 +10,6 @@ class RiskTypes(Enum):
 class DataTypes(Enum):
     # text, number, date, or enum
     TE = 'text'
-    IN = 'integer'
     NU = 'number'
     DA = 'date'
     EN = 'enum'
