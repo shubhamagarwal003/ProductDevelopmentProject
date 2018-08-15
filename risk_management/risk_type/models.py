@@ -35,13 +35,6 @@ class RiskField(models.Model):
     risk = models.ForeignKey(Risk, on_delete=models.CASCADE, related_name='fields')
     description = models.TextField(default="")
 
-    def save(self, **kwargs):
-        dtypes = [dtype for dtype in DataTypes]
-        if(self.dtype not in dtypes):
-            raise ValidationError("Invalid Risk Type")
-        else:
-            return super(RiskField, self).save(**kwargs)
-
 
 class RiskFieldSuCl(models.Model):
     """A Super Class for each RiskField Data Type"""

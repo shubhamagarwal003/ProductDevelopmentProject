@@ -10965,7 +10965,7 @@
 	}
 
 	function getRiskField(riskId) {
-	    fetch('/get/risk/1/').then(function (data) {
+	    fetch('/get/risk/' + riskId + '/').then(function (data) {
 	        return data.json();
 	    }).then(function (res) {
 	        riskFields.name = res.name;
@@ -10979,6 +10979,6 @@
 	    });
 	}
 
-	getRiskField('1');
+	getRiskField('3');
 
 })));

@@ -24,7 +24,7 @@ export default {
     output: [
         {
             format: 'umd',
-            name: 'VADR',
+            name: 'BRITECORE',
             file: 'risk_type/static/js/custom.js'
         }
     ],
