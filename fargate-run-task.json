@@ -1,0 +1,14 @@
+{
+    "cluster": "britecore-cluster", 
+    "taskDefinition": "britecore-fargate", 
+    "count": 1,
+    "group" : "britecore",
+    "launchType": "FARGATE",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": ["subnet-0c7ca484b29ae2939"],
+            "securityGroups": ["sg-098492dbeafa57e98"],
+            "assignPublicIp": "ENABLED"
+        }
+    }
+}

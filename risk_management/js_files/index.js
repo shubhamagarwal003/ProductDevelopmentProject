@@ -25,7 +25,7 @@ function addField(field) {
 }
         
 function getRiskField(riskId){
-    fetch('/get/risk/1/')
+    fetch('/get/risk/'+riskId+'/')
     .then(function(data){
         return data.json()
     })
@@ -42,4 +42,4 @@ function getRiskField(riskId){
     });
 }
 
-getRiskField('1');
+getRiskField('3');
