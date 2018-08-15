@@ -13,13 +13,6 @@ class Risk(models.Model):
     name = models.CharField(max_length=50, default="")
     risk_type = models.CharField(max_length=5, choices=[(tag, tag.value) for tag in RiskTypes])
 
-    def save(self, **kwargs):
-        tags = [tag for tag in RiskTypes]
-        if(self.risk_type not in tags):
-            raise ValidationError("Invalid Risk Type")
-        else:
-            return super(Risk, self).save(**kwargs)
-
 
 class RiskField(models.Model):
     """ORM class for storing field names and other metadata for Risk Type
@@ -104,6 +97,6 @@ class RiskFieldEnumOption(models.Model):
 
 
 def validate_dtype(field, dtype):
-    if (eval(field.dtype) != dtype):
-        return False
-    return True
+    if (field.dtype == dtype or eval(field.dtype) == dtype):
+        return True
+    return False
