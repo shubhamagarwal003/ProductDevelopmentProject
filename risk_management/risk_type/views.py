@@ -6,6 +6,7 @@ from .serializer import RiskSerializer
 
 
 def get_risk(request, risk_id):
+    # Returns a single risk type based on id
     try:
         risk = Risk.objects.filter(id=risk_id).prefetch_related('fields', 'fields__options')
         if(len(risk)):
@@ -23,6 +24,7 @@ def get_risk(request, risk_id):
 
 
 def get_all_risk(request):
+    # Returns all risk types
     risks = Risk.objects.all().prefetch_related('fields', 'fields__options')
     response = [RiskSerializer(r).data for r in risks]
     return HttpResponse(json.dumps(response), content_type="application/json")
