@@ -56,3 +56,15 @@ For now I've kept the Fargate task to have public ip. Ideally should have config
 
 ## Database 
 For simplicity I've used sqlite3. It can be easily changed to Postgresql or MySql or any other supported by django. 
+
+
+## Usage 
+To run the application on your local environment
+
+```
+1. Install docker.
+2. git clone https://github.com/shubhamagarwal003/ProductDevelopmentProject.git
+3. cd ProductDevelopmentProject
+4. docker build -t webapp .
+5. docker run -p 80:80 webapp
+```
