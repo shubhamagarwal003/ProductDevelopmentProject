@@ -78,16 +78,6 @@ class RiskFieldNumber(RiskFieldSuCl):
             raise ValidationError("Risk Field Type is not Number(Float)")
 
 
-class RiskFieldEnum(RiskFieldSuCl):
-    """ORM class for storing Enum Field Data"""
-    value = models.ForeignKey(RiskFieldEnumOption, on_delete=models.CASCADE)
-
-    def clean(self):
-        super(RiskFieldEnum, self).clean()
-        if not validate_dtype(self.risk_field, DataTypes.EN):
-            raise ValidationError("Risk Field Type is not Enum")
-
-
 class RiskFieldEnumOption(models.Model):
     """ORM class for storing Enum Field Choice"""
     option = models.CharField(max_length=10)
@@ -103,6 +93,14 @@ class RiskFieldEnumOption(models.Model):
         return super(RiskFieldEnumOption, self).save(**kwargs)
 
 
+class RiskFieldEnum(RiskFieldSuCl):
+    """ORM class for storing Enum Field Data"""
+    value = models.ForeignKey(RiskFieldEnumOption, on_delete=models.CASCADE)
+
+    def clean(self):
+        super(RiskFieldEnum, self).clean()
+        if not validate_dtype(self.risk_field, DataTypes.EN):
+            raise ValidationError("Risk Field Type is not Enum")
 
 
 def validate_dtype(field, dtype):
