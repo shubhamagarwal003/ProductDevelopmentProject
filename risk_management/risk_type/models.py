@@ -5,13 +5,19 @@ from django.core.exceptions import ValidationError
 
 
 class Risk(models.Model):
-    """ORM Class for different Risk Type
+    """ORM Class for different Risk Type. This is a individual template. 
        Params :
             name - Name of the Risk Type
             risk_type - Risk Type enum (automobiles, houses, etc.)
     """
     name = models.CharField(max_length=50, default="")
     risk_type = models.CharField(max_length=5, choices=[(tag, tag.value) for tag in RiskTypes])
+
+
+class Insurance(models.Model):
+    """ORM Class for actual insurance based on a template
+    """
+    risk = models.ForeignKey(Risk, on_delete=models.CASCADE)
 
 
 class RiskField(models.Model):
@@ -32,6 +38,7 @@ class RiskField(models.Model):
 class RiskFieldSuCl(models.Model):
     """A Super Class for each RiskField Data Type"""
     risk_field = models.ForeignKey(RiskField, on_delete=models.CASCADE)
+    insurance = models.ForeignKey(Insurance, on_delete=models.CASCADE)
 
     def clean(self):
         super(RiskFieldSuCl, self).clean()
@@ -73,7 +80,7 @@ class RiskFieldNumber(RiskFieldSuCl):
 
 class RiskFieldEnum(RiskFieldSuCl):
     """ORM class for storing Enum Field Data"""
-    value = models.CharField(max_length=10)
+    value = models.ForeignKey(RiskFieldEnumOption, on_delete=models.CASCADE)
 
     def clean(self):
         super(RiskFieldEnum, self).clean()
@@ -94,6 +101,8 @@ class RiskFieldEnumOption(models.Model):
     def save(self, **kwargs):
         self.clean()
         return super(RiskFieldEnumOption, self).save(**kwargs)
+
+
 
 
 def validate_dtype(field, dtype):

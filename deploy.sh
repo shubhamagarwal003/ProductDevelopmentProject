@@ -8,11 +8,8 @@ CreateDocker () {
 
 DeployDocker() {
 	aws ecs create-cluster --cluster-name britecore-cluster
-	aws ecs register-task-definition --cli-input-json file://./fargate-task.json
-	aws ecs run-task --cli-input-json file://./fargate-run-task.json
-	# aws ecs create-service --cluster britecore-cluster --service-name britecore-service \
-	# --task-definition britecore-fargate --desired-count 2 --launch-type "FARGATE" \
-	# --network-configuration "awsvpcConfiguration={subnets=[subnet-b0118abf],securityGroups=[sg-a9943de2],assignPublicIp=ENABLED}"
+	aws ecs register-task-definition --cli-input-json file://./fargate/fargate-task.json
+	aws ecs run-task --cli-input-json file://./fargate/fargate-run-task.json
 }
 
 MODE=$1
