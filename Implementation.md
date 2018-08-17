@@ -27,7 +27,25 @@ Returns an Individual risk template based on risk id
 
 #### Output 
 ```json
-{"name": "Test Insurance", "id": 3, "fields": [{"name": "First Name", "description": "yes", "options": [], "dtype": "text"}, {"name": "Gender", "description": "yes", "options": [{"option": "Other"}, {"option": "Male"}, {"option": "Female"}], "dtype": "enum"}]}
+{	"name": "Test Insurance", 
+	"id": 3, 
+	"fields": [{
+		"name": "First Name", 
+		"description": "yes", 
+		"options": [], 
+		"dtype": "text"
+	}, 
+	{
+		"name": "Gender", 
+		"description": "yes", 
+		"options": [
+			{"option": "Other"}, 
+			{"option": "Male"}, 
+			{"option": "Female"}
+		], 
+	"dtype": "enum"
+	}]
+}
 ``` 
 
 ### Get All Risks
@@ -38,7 +56,44 @@ Returns all risk templates
 
 #### Output
 ```json
-[{"name": "Test", "id": 1, "fields": []}, {"name": "Test 2", "id": 2, "fields": [{"name": "First Name", "description": "yes", "options": [], "dtype": "text"}]}, {"name": "Test Insurance", "id": 3, "fields": [{"name": "First Name", "description": "yes", "options": [], "dtype": "text"}, {"name": "Gender", "description": "yes", "options": [{"option": "Other"}, {"option": "Male"}, {"option": "Female"}], "dtype": "enum"}]}]
+[
+	{
+		"name": "Test", 
+		"id": 1, 
+		"fields": []
+	}, 
+	{
+		"name": "Test 2", 
+		"id": 2, 
+		"fields": [
+			{
+				"name": "First Name", 
+				"description": "yes", 
+				"options": [], 
+				"dtype": "text"
+			}]
+	}, 
+	{
+		"name": "Test Insurance", 
+		"id": 3, 
+		"fields": [{
+			"name": "First Name", 
+			"description": "yes", 
+			"options": [],
+			"dtype": "text"
+		}, 
+		{
+			"name": "Gender", 
+			"description": "yes", 
+			"options": [
+				{"option": "Other"}, 
+				{"option": "Male"}, 
+				{"option": "Female"}
+			], 
+			"dtype": "enum"
+		}]
+	}
+]
 ```
 
 

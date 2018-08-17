@@ -1,69 +1,125 @@
-# Product Development Hiring Project
+## Database Model
+1. Risk - Table for each individual template
+2. Insurance - Single Risk Template can have multiple insurance
+3. RiskField - A Risk Template can have multiple fields of different type
+4. RiskFieldEnumOption - Multiple Options for Field type Enum.
+5. RiskFieldText - Stores data for an insurance for text fields
+6. RiskFieldDate - Stores data for an insurance for date fields
+7. RiskFieldNumber - Stores data for an insurance for number fields
+8. RiskFieldEnum - Stores data for an insurance for enum fields
 
-This outlines a recent problem we ran into and came up with a development solution for. We'd like to see how you would handle it. What is most important is gaining some insight into your development process and seeing how you work.
+The ORM model class can be found [here](./risk_management/risk_type/models.py). 
 
-## Background
+The following ERD explains the relations better. 
 
-[BriteCore](http://www.britecore.com/) is a web-based platform insurance companies use to manage their business. Insurance is a form of risk management. Risks are anything that someone could incur a loss on. BriteCore has historically worked primarily with property-based risks (homes, farms, churches, etc.).
+![erd](./erd.png "ERD")
 
-## Problem
 
-Since BriteCore was created to work mostly with property-based insurance, the data model is pretty rigid. The data model assumes that all risks are properties and have addresses. This makes it difficult for BriteCore to work with different forms of insurance like Automobile Policies, Cyber Liability Coverage (protection against hacking), or Prize Insurance (if someone gets a $1 million hole-in-one prize at a golf tournament, the golf course doesn't pay it, they have an insurance policy to cover them).
+## Backend Apis
+The implementation can be found [here](./risk_management/risk_type/views.py)
 
-## Primary Goal
 
-We would like to see you come up with a solution that allows insurers to define their own custom data model for their risks. There should be no database tables called `automobiles`, `houses`, or `prizes`. Instead, insurers should be able to create their own risk types and attach as many different fields as they would like.
+### Get Individual Risk
+Returns an Individual risk template based on risk id
 
-Fields are bits of data like first name, age, zip code, model, serial number, Coverage A limit, or prize dollar amount. Basically any data the carrier would want to collect about the risk. Fields can also be of different types, like text, date, number, currency, and so forth.
+#### End Point 
+/get/risk/<risk-id>/. Risk Id (1-3) should work for testing.
 
-### Data
+#### Output 
+```json
+{	"name": "Test Insurance", 
+	"id": 3, 
+	"fields": [{
+		"name": "First Name", 
+		"description": "yes", 
+		"options": [], 
+		"dtype": "text"
+	}, 
+	{
+		"name": "Gender", 
+		"description": "yes", 
+		"options": [
+			{"option": "Other"}, 
+			{"option": "Male"}, 
+			{"option": "Female"}
+		], 
+	"dtype": "enum"
+	}]
+}
+``` 
 
-For the data layer, model the risk types and how the generic fields and field types would relate to these risk types. Field types should be either `text`, `number`, `date`, or `enum` (where there are multiple potential options but only one choice can be made).
+### Get All Risks
+Returns all risk templates
 
-Deliverables will be either...
+#### End Point
+/get/risks/
 
-1. A Python file containing the ORM classes for these tables.
-2. An entity relationship diagram, which depicts the tables and their relationship to one another.
-3. Both 1 and 2, because you're awesome.
+#### Output
+```json
+[
+	{
+		"name": "Test", 
+		"id": 1, 
+		"fields": []
+	}, 
+	{
+		"name": "Test 2", 
+		"id": 2, 
+		"fields": [
+			{
+				"name": "First Name", 
+				"description": "yes", 
+				"options": [], 
+				"dtype": "text"
+			}]
+	}, 
+	{
+		"name": "Test Insurance", 
+		"id": 3, 
+		"fields": [{
+			"name": "First Name", 
+			"description": "yes", 
+			"options": [],
+			"dtype": "text"
+		}, 
+		{
+			"name": "Gender", 
+			"description": "yes", 
+			"options": [
+				{"option": "Other"}, 
+				{"option": "Male"}, 
+				{"option": "Female"}
+			], 
+			"dtype": "enum"
+		}]
+	}
+]
+```
 
-### Backend
 
-For the backend, create two API endpoints. One that returns a single risk type and one that returns a list of all risk types. Include all of the risk types' fields, field types, and any other data about the fields. This is your chance to show that you know how to create clean REST APIs.
+## Frontend 
 
-Deliverables will be...
+The frontend can be accessed at the path home path (i.e - /). For now hardcoded the template to Risk Id 3. It can be easily changed to a generic id.
 
-1. A well-tested REST API written in Python. **Bonus points** if you use Django.
 
-### Frontend
+## Deployment
 
-The frontend is all about collecting information as it relates to these generic models. Create a single page that hits your risk type API endpoint(s) and displays all of the fields to the user in a form. Be sure to display at least one field of each type on the page. Don't worry about submitting the form.
+Deployment is done to AWS ECS using Fargate. There is a script [deploy.sh](./deploy.sh) to take care of it. Its a simple script and self explanatory. The deployment would not work on any other PC as it requires my AWS Credentials. 
 
-Fields should use appropriate widgets based on their type. `text` fields should display as text boxes, `date` fields should use date pickers, and so on.
+For now I've kept the Fargate task to have public ip. Ideally should have configured a Load Balancer before that. 
 
-Deliverables will be...
 
-1. A modern JavaScript app. **Bonus points** if you use ES6 and a modern JavaScript framework. **Mega bonus points** if you use Vue.js specifically.
+## Database 
+For simplicity I've used sqlite3. It can be easily changed to Postgresql or MySql or any other supported by django. 
 
-## Questions
 
-For questions, please contact daniel.greenfeld@britecore.com.
+## Usage 
+To run the application on your local environment
 
-## Finished?
-
-When you're done with the above project, please submit your GitHub repo to daniel.greenfeld@britecore.com along with a link to a live hosted instance. If you haven't already supplied a resume during this process, attach it to your email.
-
-1. **Bonus points** if you also orchestrate the launch environment in AWS using CloudFormation.
-2. **Mega bonus points** if you host the app in [AWS Lambda](https://aws.amazon.com/lambda/) using [Zappa](https://github.com/Miserlou/Zappa) or [AWS ECS](https://aws.amazon.com/ecs/) using [AWS Fargate](https://aws.amazon.com/fargate/).
-
-## Evaluation
-
-If you'd like to do very well on this project, we'll hand you the categories we utilize to score candidates! They are:
-
-1. Business requirements are met or exceeded
-2. Documentation is clearly written
-3. Django is PEP8 compliant and avoids antipatterns
-4. Vue.js contains appropriate ViewModels and DOM interactions
-5. CSS Framework is utilized correctly
-6. Test coverage is complete and meaningful
-7. Deployment is fully scripted
-8. Communication is positive and respectful
+```
+1. Install docker.
+2. git clone https://github.com/shubhamagarwal003/ProductDevelopmentProject.git
+3. cd ProductDevelopmentProject
+4. docker build -t webapp .
+5. docker run -p 80:80 webapp
+```
