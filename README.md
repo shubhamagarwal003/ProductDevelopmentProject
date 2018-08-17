@@ -15,8 +15,14 @@ The following ERD explains the relations better.
 ![erd](./erd.png "ERD")
 
 
+## Accessing the App
+The app can be accessed at (Frontend form) [http://18.206.153.18/](http://18.206.153.18/)
+1. Get Individual Risk Template - [http://18.206.153.18/get/risk/3/](http://18.206.153.18/get/risk/3/)
+2. Get All Risks Template - [http://18.206.153.18/get/risks/](http://18.206.153.18/get/risks/) 
+
+
 ## Backend Apis
-The implementation can be found [here](./risk_management/risk_type/views.py)
+The implementation can be found [here](./risk_management/risk_type/views.py). 
 
 
 ### Get Individual Risk
